@@ -1,0 +1,24 @@
+services:
+
+  tsdb:
+    image: timescale/timescaledb:latest-pg16
+    container_name: alphavol_tsdb
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: <PWD>
+      POSTGRES_DB: alpha_volume_db1
+    ports:
+      - "5444:5432"
+    volumes:
+      - /home/tom/Desktop/projects/tsdb:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  datacollector:
+    build: .
+    container_name: alphavol_collector
+    volumes:
+      - /home/tom/Desktop/projects/datacollector/proj/src/config.json:/app/src/config.json:ro
+      - /home/tom/Desktop/projects/datacollector/proj/:/app/logs
+    restart: unless-stopped
+    depends_on:
+      - tsdb
