@@ -1,0 +1,5 @@
+cryptodatacollector/
+logs/
+src/config.json
+*.pyc
+__pycache__/
