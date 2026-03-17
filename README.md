@@ -1,4 +1,4 @@
-<h1 align="center">AlphaVolume | <span style="color:#2196F3">DataCollector</span></h1>
+<h1 align="center"><a href="https://vik-dev1.github.io/DataCollector/">DataCollector | <span style="color:#1dd1a1">documentation</span></a></h1>
 
 <p align="center">
   📡 Real-Time Crypto Data Pipeline 🗄️
@@ -9,14 +9,18 @@
 </p>
 
 <p align="center">
-  <img src="botLogo.png" width="180" style="border-radius:50%; border: 3px solid #e53935;" />
+  <a href="https://vik-dev1.github.io/DataCollector/">
+    <img src="botLogo.png" width="180" style="border-radius:50%; border: 3px solid #e53935;" />
+  </a>
 </p>
-
-<p align="right"><em>Made by &nbsp;<strong>ViK</strong></em></p>
 
 ---
 
-**AlphaVolume DataCollector** is a Python service that connects to **Bybit WebSocket** streams and continuously collects real-time crypto market data — trades, order book snapshots, klines, and liquidations — storing everything into a **TimescaleDB** time-series database. 📈
+**DataCollector** is a Python service that connects to **Bybit WebSocket** streams and continuously collects real-time crypto market data — trades, order book snapshots, klines, and liquidations — storing everything into a **TimescaleDB** time-series database. 📈
+
+<p align="center">
+  📖 Full documentation available at <a href="https://vik-dev1.github.io/DataCollector/">vik-dev1.github.io/DataCollector</a>
+</p>
 
 ---
 
