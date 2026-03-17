@@ -1,7 +1,7 @@
 <h1 align="center"><a href="https://vik-dev1.github.io/DataCollector/">DataCollector</a></h1>
 
 <p align="center">
-  📡 Real-Time Crypto Data Pipeline 🗄️
+   Real-Time Crypto Data Pipeline 
 </p>
 
 <p align="center">
@@ -22,8 +22,8 @@
 
 ---
 
-**DataCollector** is a Python application that connects to **Bybit WebSocket** streams and continuously collects real-time crypto market data — trades, order-book snapshots, klines, and liquidations — storing everything into a **TimescaleDB (PostgreSQL)** time-series database. 
-A **Telegram bot** runs alongside the collector for remote monitoring and control — no need to SSH into the server to check on it. 📈
+**DataCollector** is a Python application that connects to **Bybit WebSocket** streams and continuously collects real-time crypto market data — trades, order-book snapshots, price, and liquidations — storing everything into a **TimescaleDB (PostgreSQL)** time-series database. 
+A **Telegram bot** runs alongside the collector for remote monitoring and control — no need to SSH into the server to check on it. 
 
 ---
 
