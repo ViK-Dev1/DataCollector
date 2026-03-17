@@ -1,0 +1,13 @@
+db/istruzioni.txt
+/.vscode
+/conf
+/dumpExample
+/logs
+/src/__pycache__
+src/config.json
+/src/db/__pycache__
+/src/db/models/__pycache__
+/src/queues/__pycache__
+/src/fetcher/__pycache__
+/src/fetcher/handlers/__pycache__
+/src/tgbot/__pycache__
