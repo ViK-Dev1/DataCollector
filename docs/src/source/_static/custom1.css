@@ -1,0 +1,26 @@
+.pre{
+  font-weight: 500;
+}
+
+[data-theme=dark] a:link, 
+[data-theme=dark] a:visited,
+[data-theme=dark] .pre {
+  color: #7bed9f !important;
+}
+
+[data-theme=auto] a:link, 
+[data-theme=auto] a:visited,
+[data-theme=auto] .pre {
+  color: #7bed9f !important;
+}
+
+[data-theme=light] a:link,
+[data-theme=light] a:visited,
+[data-theme=light] .pre {
+  color: #3c40c6 !important;
+}
+
+.content-icon-container{
+	position: fixed;
+	right: 22rem;
+}
