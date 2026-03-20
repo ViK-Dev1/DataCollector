@@ -236,9 +236,93 @@
         <article role="main" id="furo-main-content">
           <section id="demo">
 <h1>Demo<a class="headerlink" href="#demo" title="Link to this heading">¶</a></h1>
-<section id="demo-screenshots">
-<h2>Demo Screenshots<a class="headerlink" href="#demo-screenshots" title="Link to this heading">¶</a></h2>
-<p>In this chapter you can see how the system is working</p>
+<section id="deployment-monitoring">
+<h2>Deployment &amp; Monitoring<a class="headerlink" href="#deployment-monitoring" title="Link to this heading">¶</a></h2>
+<p>DataCollector runs on a <strong>VPS (Virtual Private Server)</strong> — not on a local machine — so it stays active 24/7 without requiring any PC to be left on. The application is packaged as a Docker container and orchestrated alongside the TimescaleDB container via Docker Compose.</p>
+<p>Once deployed, the only interface needed to monitor and control the service is <strong>Telegram</strong>. The following commands are available:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/status</span></code></p></td>
+<td><p>Shows the connection state, uptime, and restart count for each tracked crypto pair</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/stats</span> <span class="pre">&lt;SYMBOL&gt;</span></code></p></td>
+<td><p>Returns the total number of records collected per table for a given symbol (e.g. <code class="docutils literal notranslate"><span class="pre">/stats</span> <span class="pre">BTCUSDT</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/dbsize</span></code></p></td>
+<td><p>Shows the total database size and the size of each individual hypertable</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/enableNotifications</span></code></p></td>
+<td><p>Turns on automatic alerts for disconnections or errors</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/disableNotifications</span></code></p></td>
+<td><p>Silences automatic alerts</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/forceStop</span> <span class="pre">&lt;code&gt;</span></code></p></td>
+<td><p>Remotely shuts down the service using a time-based PIN</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The screenshots below show these commands in action — checking the health of active connections, monitoring how the database is growing over time, and performing a controlled remote shutdown when needed.</p>
+</section>
+<hr class="docutils" />
+<section id="screenshots">
+<h2>Screenshots<a class="headerlink" href="#screenshots" title="Link to this heading">¶</a></h2>
+<hr class="docutils" />
+<section id="monitoring-db-size-emergency-stop">
+<h3>Monitoring DB Size &amp; Emergency Stop<a class="headerlink" href="#monitoring-db-size-emergency-stop" title="Link to this heading">¶</a></h3>
+<div style="display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 2rem;">
+  <img src="../_static/demo-img1.jpg" style="width: 260px; border-radius: 10px; flex-shrink: 0;" />
+  <p>
+    The <code>/dbsize</code> command gives an instant overview of how much storage the database is consuming — both in total and broken down per hypertable.
+    If something looks off — such as an unexpected spike in data volume or approaching the VM's memory limits — the service can be immediately halted remotely via <code>/forceStop</code>,
+    which requires entering a time-based PIN to confirm the operation and prevent accidental shutdowns.
+  </p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="automatic-reconnection-while-sleeping">
+<h3>Automatic Reconnection While Sleeping<a class="headerlink" href="#automatic-reconnection-while-sleeping" title="Link to this heading">¶</a></h3>
+<div style="display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 2rem;">
+  <img src="../_static/demo-img2.jpg" style="width: 260px; border-radius: 10px; flex-shrink: 0;" />
+  <p>
+    During the night, several WebSocket connections dropped — the exchange stopped responding to keepalive pings and no reply messages were received.
+    The built-in exponential backoff mechanism detected the failures, waited progressively longer between each retry, and successfully re-established all connections
+    without any human intervention. By morning, every pair was online and collecting data as expected.
+  </p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="checking-collection-status-per-pair">
+<h3>Checking Collection Status Per Pair<a class="headerlink" href="#checking-collection-status-per-pair" title="Link to this heading">¶</a></h3>
+<div style="display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 2rem;">
+  <img src="../_static/demo-img3.jpg" style="width: 260px; border-radius: 10px; flex-shrink: 0;" />
+  <p>
+    The <code>/stats</code> command provides a per-symbol breakdown of how many records have been collected across all four tables:
+    price data, order-book snapshots, orders, and liquidations.
+    The <code>/status</code> command complements this by showing the live connection state for each monitored crypto pair,
+    including uptime and how many times each connection has been restarted since the service launched.
+  </p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="data-ready-for-analysis">
+<h3>Data Ready for Analysis<a class="headerlink" href="#data-ready-for-analysis" title="Link to this heading">¶</a></h3>
+<div style="display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 2rem;">
+  <img src="../_static/demo-img4.jpg" style="width: 260px; border-radius: 10px; flex-shrink: 0;" />
+  <p>
+    After running continuously for the desired period, enough data was accumulated to begin pattern detection and strategy development.
+    At the time of this snapshot, the database had grown to <strong>250 MB</strong> — tick-level market data across all monitored pairs,
+    fully owned, self-hosted, and available for any downstream analysis without limitations or recurring costs.
+  </p>
+</div>
+</section>
 </section>
 </section>
 
@@ -290,7 +374,14 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Demo</a><ul>
-<li><a class="reference internal" href="#demo-screenshots">Demo Screenshots</a></li>
+<li><a class="reference internal" href="#deployment-monitoring">Deployment &amp; Monitoring</a></li>
+<li><a class="reference internal" href="#screenshots">Screenshots</a><ul>
+<li><a class="reference internal" href="#monitoring-db-size-emergency-stop">Monitoring DB Size &amp; Emergency Stop</a></li>
+<li><a class="reference internal" href="#automatic-reconnection-while-sleeping">Automatic Reconnection While Sleeping</a></li>
+<li><a class="reference internal" href="#checking-collection-status-per-pair">Checking Collection Status Per Pair</a></li>
+<li><a class="reference internal" href="#data-ready-for-analysis">Data Ready for Analysis</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
